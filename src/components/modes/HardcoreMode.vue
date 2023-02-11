@@ -3,26 +3,28 @@
         <LoadingScreen />
     </div>
     <div v-else>
-        <div v-if="(!this.gameOver) && !(this.paused)" class="bg-game">    
-            <div class="d-flex justify-content-around">
-                <div class="row col-3 align-items-center ">
+        <div v-if="(!this.gameOver) && !(this.paused)">    
+            <div class="d-flex justify-content-around mt-3 bg-game">
+                <div class="row col-4 align-items-center  justify-content-center">
                     <img class="rounded-circle avatarInGame" :src="this.url+'/images/avatars/'+avatar+'.jpg'" alt="">
                 </div>
-                <div class="col-1 d-flex justify-content-center align-items-center">
+                <div class="col-4 d-flex justify-content-center align-items-center">
                     <a @click="pauseButton" class="p-2 pt-3 pauseButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10vw" height="10vh" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
                     </a>
                 </div>
-                <div class="d-flex flex-row-reverse flex-reverse align-items-center pt-2">
-                    <div class="pl-1 customButtons" v-bind:class="heart1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vh" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
-                </div>
-                <div class="pl-1 customButtons" v-bind:class="heart2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vh" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
-                </div>
-                <div class="pl-1 customButtons" v-bind:class="heart3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vh" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
-                </div>
+                <div class="col-4">
+                    <div class="d-flex flex-row-reverse flex-end  flex-reverse align-items-center pt-2 heart-row">
+                        <div class="pl-1 customButtons" v-bind:class="heart1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                        </div>
+                        <div class="pl-1 customButtons" v-bind:class="heart2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                        </div>
+                        <div class="pl-1 customButtons" v-bind:class="heart3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="text-center">
@@ -36,7 +38,7 @@
                 <div class="card bg-transparent" style="max-width: 100vw; border: none;">
                     <div class="row justify-content-center " style="background-color: black;">
                         <div id="row">
-                            <img :src="this.imagePath" class="rounded" style="height: 40vh; width: 90vw;" alt="wait...">
+                            <img :src="this.imagePath" class="rounded game__image" alt="wait...">
                         </div>
                     </div>
                     <div>
@@ -86,7 +88,7 @@
 </div>
 <!-- AFTER SELECTION -->
 <!-- GAME OVER -->
-<div v-if="this.gameOver" class="d-flex  text-center text-danger flex-column justify-content-center py-5 sticky-top w-100 h-100 position-absolute">
+<div v-if="this.gameOver" class="d-flex  text-center text-danger flex-column justify-content-center align-items-center py-5 sticky-top w-100 h-100 position-absolute">
     <div class="d-flex fixed-top justify-content-around align-items-center pt-2">
         <div>
             <img class="w-75 h-75 avatar border border-info" :src="this.url+'/images/avatars/'+avatar+'.jpg'" alt="">
@@ -117,16 +119,18 @@
         </div>
     </div>
     <div class="border border-secondary mt-5 p-2 mr-5 ml-5" style="color:black;">
-        <h5>Last Game</h5>
-        <div class="container">
-            <div class="row">
-                <div class="col d-flex align-items-center">
-                    <img :src="this.imagePath" class="rounded" style="height: 20vh; width: 32vw;" alt="wait...">
-                </div>
-                <div class="col">
-                    <p class="font-italic"><b>{{ selectedGame.name }}</b></p>
-                    <p class="font-italic">Releashed at: <br> <b>{{ this.releashDate('gameOver') }}</b></p>
-                    <p class="font-italic">By : <br><b>{{ this.selectedGame.companies[0][0].name }}</b></p>
+        <div class="last_game_container">
+            <h5>Last Game</h5>
+            <div class="container">
+                <div class="row">
+                    <div class="col d-flex align-items-center">
+                        <img :src="this.imagePath" class="rounded" style="height: 20vh; width: 32vw;" alt="wait...">
+                    </div>
+                    <div class="col">
+                        <p class="font-italic font_size_last_game"><b>{{ selectedGame.name }}</b></p>
+                        <p class="font-italic font_size_last_game">Releashed at: <br> <b>{{ this.releashDate('gameOver') }}</b></p>
+                        <p class="font-italic font_size_last_game">By : <br><b>{{ this.selectedGame.companies[0][0].name }}</b></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -151,12 +155,45 @@
 </div>
 </template>
 <style>
+
+.bg-game {
+    height: 10vh;
+}
+
+.game__image {
+    height: 40vh;
+    width: 90vw;
+}
+
+.font_size_last_game {
+    font-size:1rem;
+}
+
+@media only screen and (min-width: 1275px) {
+    .font_size_last_game {
+        font-size:2rem;
+    }
+}
+
+@media only screen and (min-width: 1275px) {
+    .heart-row {
+        width: 10vw;
+    }
+}
+@media only screen and (min-width: 1275px) {
+    .game__image {
+        width: 60vw;
+    }
+}
+
 .avatarInGame {
-    width: 10vw;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
 }
 @media (max-width : 320px)  {
     .avatarInGame {
-        width: 100vw;
+        width: 50vw;
     }
 }
 .pause-btn-lg {
@@ -172,6 +209,18 @@
     fill: #01139d ;
     -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
     filter: drop-shadow( 3px 3px 2px #ff0048b0);
+    height: 10vh;
+}
+
+@media only screen and (min-width: 1275px) {
+    .pauseButton {
+        height: 8vh;
+    }
+}
+@media only screen and (min-width: 1275px) {
+    .last_game_container {
+        max-width: 60vw;
+    }
 }
 
 .btnText {
@@ -277,8 +326,8 @@ export default {
             answerGiven: 0,
             oldGames: [],
             selectedButton: 0,
-            heart3: 'text-dark',
-            heart2: 'text-dark',
+            heart3: '',
+            heart2: '',
             heart1: '',
             pointsEarned: 0,
             btnUi: '',
@@ -338,7 +387,6 @@ export default {
                 this.secondsLeft = e;
             }
         },
-
         getData(){
         
             axios.get(API_URL+'/api/random').then( (response) => {
@@ -412,7 +460,7 @@ export default {
                 // WIN
                 if (game.id == this.selected) {
                     this.win = true;
-                    this.pointsEarned = (1000 * this.secondsLeft);
+                    this.pointsEarned = (100 * this.secondsLeft);
                     this.$emit('sfx', 'win')
                     // LOSE
                 } else {
@@ -436,12 +484,29 @@ export default {
                 this.buttonColor(selectedButton)
             }
         },
-        handleScore () {
-            this.score += this.pointsEarned;
+        handleScore (skip) {
+            const earned = this.pointsEarned;
+            if (!skip) {
+                const numIterations = earned / 10;
+
+                let i = 0;
+                const loop = () => {
+                if (i < numIterations) {
+                    this.pointsEarned -= 10;
+                    this.score += 10;
+                    i++;
+                    this.$emit('sfx', 'points')
+                    setTimeout(loop, 4);
+                }
+                };
+                loop();
+
+            } else {
+                null
+            }
         },
         next () {
-            this.handleScore();
-            this.pointsEarned = 0
+            this.handleScore(false);
             this.loading = true;
             this.setUiTheme();
             this.selectionInProgress = false;
@@ -449,8 +514,10 @@ export default {
             this.countDown = this.roundSeconds
             if (this.gameOver) {
                 this.oldGames = []
+                this.heart2 = ''
+                this.heart3 = ''
                 this.score = 0;
-                this.lives = 1;
+                this.lives = 3;
                 this.gameOver = false;
             }
             this.lose = false;
@@ -490,6 +557,8 @@ export default {
         }
     }, 
     created () {
+        this.heart2 = "text-dark"
+        this.heart3 = "text-dark"
         document.addEventListener("resume", this.APPResume, false);
         this.$emit('sfx', 'clock-20')
         this.countDown = this.roundSeconds
