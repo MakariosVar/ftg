@@ -97,7 +97,7 @@ export default {
     },
     methods: {
         setNickname () {
-            this.$router.push('/nickname')
+            this.$router.push('/profile')
             this.$emit('sfx', 'setNicknameBtn')
         },
         HandleMusic () {

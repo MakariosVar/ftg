@@ -141,9 +141,7 @@ export default {
       this.musicVolume = e;
     },
     reset() {
-      localStorage.setItem('nickname', '.');
-      localStorage.setItem('avatar', 1);
-      localStorage.setItem('nation', 'ac');
+      localStorage.clear();
     }
   },
   mounted () {
@@ -152,15 +150,6 @@ export default {
       'pause', 
       this.onDeviceReady()
     );
-    if (localStorage.getItem('nickname') == null) {
-      localStorage.setItem('nickname', '.');
-    }
-    if (localStorage.getItem('avatar') == null) {
-      localStorage.setItem('avatar', 1);
-    }
-    if (localStorage.getItem('nation') == null) {
-      localStorage.setItem('nation', 'ac');
-    }
   },
   
 

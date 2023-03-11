@@ -3,7 +3,7 @@
             <h3><u><i>Nickname</i></u></h3>
             <div class="row">
                 <div class="form__group field w-100 text-center">
-                    <input :maxlength="25" type="input" v-model="this.nicknameInput"  class="form__field text-center" :placeholder="this.nicknameInput" name="name" id='name' required />
+                    <input :maxlength="25" type="input" v-model="nicknameInput" :class="nicknameInput === '' ? 'form__field__empty' : 'form__field__ok'" class="text-center" :placeholder="nicknameInput" name="name" id="name" />
                     <label for="name" class="form__label">Name</label>
                 </div>
             </div>
@@ -14,11 +14,12 @@
                 </div>
                 <div class="d-flex flex-column justify-content-center">
                     <h5><u>Country</u></h5>
-                    <img @click="(this.selectingNation = true)" style="max-height: 5vh" :src="require('../assets/flags/'+nation+'.svg')" alt="wait...">    
+                    <img v-if="nation != null" @click="(this.selectingNation = true)" style="max-height: 5vh" :src="require('../assets/flags/'+nation+'.svg')" alt="wait...">    
                 </div>
             </div>
             <div class="row">
-                <a @click.prevent="save()" class="btn btn-success">Save</a>
+                <a @click.prevent="dontSave()" class="btn btn-secondary text-white mr-1">Back</a>
+                <a @click.prevent="save()" class="btn btn-success text-white ml-1">Save</a>
             </div>
         </div>
         <div v-if="this.selectingNation" class="text-center container">
@@ -50,7 +51,7 @@
     import {COUNTRIES} from '../main.js'
     
     export default {
-        name: 'SetNickName',
+        name: 'ProfileComponent',
         data() {
             return {
                 url: API_URL,
@@ -59,18 +60,19 @@
                 nickname: localStorage.getItem('nickname'),
                 selectingAvatar: false,
                 selectingNation: false,
-                nation: localStorage.getItem('nation')
+                nation: localStorage.getItem('nation'),
+                nicknameInput: this.nickname == null ?  '' :  this.nickname
             }
         },
         created () {
             if (this.avatar == null) {
                 this.avatar = '1';
-                localStorage.setItem('avatar', 1)
             }
-            if ( this.nickname == '.') {
+            if (this.nation == null) {
+                this.nation = 'ac';
+            }
+            if ( this.nickname == null) {
                 this.nickname = '';
-                localStorage.setItem('nickname', '.')
-            } else {
                 this.nicknameInput = this.nickname;
             }
         },
@@ -81,21 +83,24 @@
             back() {
                 this.selectingAvatar = false;
             },
+            dontSave () {
+                this.$router.back();
+            },  
             selectAvatarEnd (i) {
-                localStorage.setItem('avatar', i);
                 this.avatar = i;
                 this.selectingAvatar = false;
             },
             save () {
-                if (this.nicknameInput != '') {
+                if (this.nicknameInput) {
                     this.$emit('sfx', 'setNicknameBtn')
-                    localStorage.setItem('nickname', this.nicknameInput)
+                    localStorage.setItem('nickname', this.nicknameInput);
+                    localStorage.setItem('avatar', this.avatar);
+                    localStorage.setItem('nation', this.nation);
                     this.$router.push('/modeselect');
-                }
+                } 
             },
             chooseNation (code) {
                 this.nation = code
-                localStorage.setItem('nation', code)
                 this.selectingNation = false
             }
         },
@@ -114,18 +119,31 @@
         border-radius: 50%;
         max-width: 20vw;
     }
-
-.form__field {
+.form__field__empty {
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 2px solid #262626;
     outline: 0;
+    border-bottom: 2px solid red;
     font-size: 1.3rem;
     color: #000;
     padding: 7px 0;
     background: transparent;
-    transition: border-color 0.2s;    
+    transition: border-color 0.2s; 
+
+}
+
+.form__field__ok {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid #262626;
+    font-size: 1.3rem;
+    color: #000;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s; 
 }
 
 

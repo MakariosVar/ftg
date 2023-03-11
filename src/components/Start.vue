@@ -11,7 +11,8 @@
     </div>
     </router-link>
     <div class="fixed-bottom pb-5">
-      <a href="#" class="btn btn-outline-primary btn-sm" @click="this.$emit('reset', true)">reset</a>
+      <a href="#" class="btn btn-outline-primary btn-sm" @click="this.$emit('reset', true); this.reset = true;">reset</a>
+      <h5 v-if="reset" class="text-center text-success">reseted</h5>
     </div>
   </div>
 </template>
@@ -47,17 +48,17 @@ export default {
     return {
       startBtnClass: 'arcadeThemeStartButton',
       themeText: 'Dark Theme',
-      themeTextClass: 'btn-sm btn-outline-dark'
+      themeTextClass: 'btn-sm btn-outline-dark',
+      reset: false,
     }
   },
   methods : {
     start() {
       this.$emit('sfx', 'mainButton')
-      let self = this;
-      self.$emit('music', true)
+      this.$emit('music', true)
       var nickname = localStorage.getItem('nickname');
-      if( nickname == '.') {
-        self.$router.push('/nickname')
+      if( nickname == null) {
+        this.$router.push('/profile')
       }
     },
     themeChange () {

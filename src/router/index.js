@@ -2,7 +2,7 @@ import { createMemoryHistory, createRouter } from "vue-router";
 import Start from "../components/Start.vue";
 import RandomMode from "../components/modes/RandomMode.vue";
 import ModeSelect from "../components/ModeSelect.vue";
-import SetNickname from "../components/SetNickname.vue";
+import Profile from "../components/Profile.vue";
 import Gear from "../components/Gear.vue";
 import decadeSelection from "../components/modes/decadeSelection.vue"
 import DecadeMode from "../components/modes/DecadeMode.vue"
@@ -46,9 +46,9 @@ const routes = [
     component: decadeSelection,
   },
   {
-    path: "/nickname",
-    name: "SetNickname",
-    component: SetNickname,
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
   },
   {
     path: "/gearsettings",
