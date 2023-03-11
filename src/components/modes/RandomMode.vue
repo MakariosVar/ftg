@@ -14,25 +14,22 @@
                     </a>
                 </div>
                 <div class="col-4">
-                    <div class="d-flex flex-row-reverse flex-end  flex-reverse align-items-center pt-2 heart-row">
-                        <div class="pl-1 customButtons" v-bind:class="heart1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
-                        </div>
-                        <div class="pl-1 customButtons" v-bind:class="heart2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
-                        </div>
-                        <div class="pl-1 customButtons" v-bind:class="heart3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                    <div class="row pt-2 heart-row h-100">
+                        <div class="pl-1 customButtons h-100 row justify-content-end" v-bind:class="heart1">
+                            <div class="col-6 h-100 d-flex align-items-center">
+                                <span class="lives_number">{{ lives+'x' }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                            </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
-        <div class="text-center">
-            <h3 style="color: rgb(134, 5, 46);">
-                {{  this.score }} 
-                <span class="h6 pointsText">PTS</span>
-                <span v-if="pointsEarned > 0" class="text-success btnText" style="font-size:0.98rem"> + {{  pointsEarned }}</span> 
-            </h3>
+            <div class="text-center">
+                <h3 style="color: rgb(134, 5, 46);">
+                    {{  this.score }} 
+                    <span class="h6 pointsText">PTS</span>
+                    <span v-if="pointsEarned > 0" class="text-success btnText" style="font-size:0.98rem"> + {{  pointsEarned }}</span> 
+                </h3>
             </div>
             <div class="container  d-flex justify-content-center pt-2">
                 <div class="card bg-transparent" style="max-width: 100vw; border: none;">
@@ -155,6 +152,10 @@
 </div>
 </template>
 <style>
+.lives_number {
+    font-size: 1.5rem;
+    color: rgb(51, 31, 31);
+}
 
 .bg-game {
     height: 10vh;

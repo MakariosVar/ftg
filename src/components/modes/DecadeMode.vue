@@ -13,24 +13,23 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="10vw" height="10vh" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
                     </a>
                 </div>
-                <div class="d-flex flex-row-reverse flex-reverse align-items-center pt-2">
-                    <div class="pl-1 customButtons" v-bind:class="heart1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vh" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
-                </div>
-                <div class="pl-1 customButtons" v-bind:class="heart2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vh" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
-                </div>
-                <div class="pl-1 customButtons" v-bind:class="heart3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vh" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                <div class="col-4">
+                    <div class="row pt-2 heart-row h-100">
+                        <div class="pl-1 customButtons h-100 row justify-content-end" v-bind:class="heart1">
+                            <div class="col-6 h-100 d-flex align-items-center">
+                                <span class="lives_number">{{ lives+'x' }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center">
-            <h3 style="color: rgb(134, 5, 46);">
-                {{  this.score }} 
-                <span class="h6 pointsText">PTS</span>
-                <span v-if="pointsEarned > 0" class="text-success btnText" style="font-size:0.98rem"> + {{  pointsEarned }}</span> 
-            </h3>
+            <div class="text-center">
+                <h3 style="color: rgb(134, 5, 46);">
+                    {{  this.score }} 
+                    <span class="h6 pointsText">PTS</span>
+                    <span v-if="pointsEarned > 0" class="text-success btnText" style="font-size:0.98rem"> + {{  pointsEarned }}</span> 
+                </h3>
             </div>
             <div class="container  d-flex justify-content-center pt-2">
                 <div class="card bg-transparent" style="max-width: 100vw; border: none;">
@@ -151,6 +150,11 @@
 </div>
 </template>
 <style>
+.lives_number {
+    font-size: 1.5rem;
+    color: rgb(51, 31, 31);
+}
+
 .avatarInGame {
     width: 10vw;
 }

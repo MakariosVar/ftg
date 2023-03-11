@@ -67,6 +67,11 @@
 
 </template>
 <style>
+.lives_number {
+    font-size: 1.5rem;
+    color: rgb(51, 31, 31);
+}
+
 .text3d {
     color: #ff0048b0 ;
     text-shadow: 2px 2px 2px #01139d;   

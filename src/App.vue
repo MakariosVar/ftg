@@ -1,5 +1,5 @@
 <template>
-  <div :class="BackGroundClass" style="height: 100vh; width: 100vw;">
+  <div :class="BackGroundClass" style="height: 95vh; width: 95vw;">
     <RouterView 
       @music="Music"
       @setVolume="setVolume"
@@ -53,9 +53,11 @@
   src: local("NCAAUCLABruins2017Standard"),   url(./assets/fonts/NCAAUCLABruins2017Standard.otf) format("truetype");
 }
 </style>
-OldSport01CollegeNcv-aeGm
 <script>
 import AudiosComponent from './components/AudiosComponent.vue'
+import {GOOGLE_PLAY_CLIENT_ID} from './main.js'
+
+const gapi = window.gapi
 
 export default {
   components: {
@@ -74,8 +76,29 @@ export default {
       onGame: false
     }
   },
-  
+  created() {
+    console.log(GOOGLE_PLAY_CLIENT_ID)
+    gapi.load('auth2', () => {
+      gapi.auth2.init({
+        client_id: GOOGLE_PLAY_CLIENT_ID,
+      }).then(function() {
+          let auth2 = gapi.auth2.getAuthInstance();
+          this.signIn(auth2);
+        });
+    });
+  },
   methods: {
+    signIn(auth2) {
+      auth2.getAuthInstance().signIn()
+        .then((user) => {
+          const userId = user.getBasicProfile().getId();
+          const userName = user.getBasicProfile().getName();
+          console.log(userId)
+          alert(userId)
+          alert(userName)
+          console.log(userName)
+        })
+    },
     handleBackButton() {
       alert('Dont Leave, Please');
       // Prevent the default behavior (i.e., closing the application)
